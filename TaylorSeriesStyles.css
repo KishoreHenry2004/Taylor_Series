@@ -1,0 +1,161 @@
+/*
+#int {
+    box-sizing: border-box;
+}
+.interactive {
+    padding: 5px 8px;
+    border: 1px rgb(74, 121, 138) solid;
+    border-radius: 6px;
+}
+*/
+/*
+#subTopNav u {
+    display: inline-block;
+    width: auto;
+    margin: 0!important;
+    padding: 5px 15px 5px 15px !important;
+    font-size: 15px!important;
+    text-decoration: none;
+    line-height: 1.5;
+}
+*/
+/*
+{
+    box-sizing: inherit;
+}
+*/
+
+p,
+label {
+  font:
+    1rem 'Fira Sans',
+    sans-serif;
+}
+
+input {
+  margin: 0.4rem;
+}
+
+.slidecontainer {
+    width: 100px;   
+}
+
+#express {
+    box-sizing: border-box;
+}
+.expressTaylorSeries {
+    padding: 5px 8px;
+    border: 1px rgb(74, 121, 138) solid;
+    border-radius: 6px;
+}
+.splitLeft {
+    width: 55%;
+    float: left;
+}
+.splitRight {
+    width: 43%;
+    float: right;
+}
+#grf {
+    box-sizing: border-box;
+}
+.graph {
+    padding: 5px 8px;
+    border: 1px rgb(74, 121, 138) solid;
+    border-radius: 6px;
+}
+/* 
+[data-set-content] {
+    display: none;
+}
+
+.active[data-set-content] {
+    display: block;
+}
+
+.tabs {
+    cursor: pointer
+}
+
+.tab.active {
+    background-color: #CCC;
+}
+
+.tab:hover {
+    background-color: #AAA;
+}
+*/
+
+body {font-family: Arial;}
+
+/* Style the tab */
+.tab {
+  overflow: hidden;
+  border: 1px solid #ccc;
+  background-color: #f1f1f1;
+}
+
+/* Style the buttons inside the tab */
+.tab button {
+  background-color: inherit;
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  transition: 0.3s;
+  font-size: 17px;
+}
+.tab button:hover {
+    background-color: #ddd;
+  }
+  
+  /* Create an active/current tablink class */
+  .tab button.active {
+    background-color: #ccc;
+  }
+  
+  /* Style the tab content */
+  .tabcontent {
+    display: none;
+    padding: 6px 12px;
+    border: 1px solid #ccc;
+    border-top: none;
+  }
+/************  accordion  *************/
+.accordion {
+  background-color: #eee;
+  color: #444;
+  cursor: pointer;
+  padding: 18px;
+  width: 100%;
+  border: none;
+  text-align: center;
+  outline: none;
+  font-size: 15px;
+  transition: 0.4s;
+}
+
+.active, .accordion:hover {
+  background-color: #ccc;
+}
+
+.accordion:after {
+  content: '\002B';
+  color: #777;
+  font-weight: bold;
+  float: right;
+  margin-left: 5px;
+}
+
+.active:after {
+  content: "\2212";
+}
+
+.panel {
+  padding: 0 18px;
+  background-color: white;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.2s ease-out;
+}

@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Taylor Series</title>
+    <script src="tabs.js" defer></script>
+    <script src="taylorSeriesGeneration.js"></script>
+    <script src = "Accordion js.js"></script>
+    <script src = "TaylorSeriesGenerationRange.js"></script>
+    <link rel="stylesheet" href="TaylorSeriesStyles.css">
+    <script src = "algebra-0.2.6.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/12.2.1/math.js"></script>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+<body>
+    <h2 align="center">Taylor Series</h2>
+    <div class="splitLeft">
+        <div class="tab">
+            <button class = "tablinks" onclick = "openCity(event,'explore')" id = "defaultOpen">Explore</button>
+            <button class = "tablinks" onclick = "openCity(event,'principle')">Principle</button>
+            <button class = "tablinks" onclick = "openCity(event,'summary')">Summary</button>
+        </div>
+        
+        <div id="explore" class="tabcontent">
+            <h3>
+                Exploring what is Taylor Series using graphical aid!
+            </h3>
+            <p>
+                Taylor Series is a tool for approximating non-polynomial equations 
+                such as <i>sin x</i>, <i>e^x</i>, etc to polynomial functions.</p>
+            <p>Their approximation becomes more accurate as the number of terms increases.</p>
+            <p>The approximations are done because polynomial functions are easier to handle!</p>
+            <!--<form action="#">-->
+            <label for="fname">Function <i>f(x)</i>:</label>
+            <input type="text" id="fname" placeholder="Enter any non-polynomial function eg:sin(x)" size = '35'>
+            <button onclick="taylorSeriesGeneration()">Generate Taylor Series</button><br>
+            <p>The general expression of a polynomial function:</p>
+            <p><i>P(x)</i> = k<sub>0</sub>+k<sub>1</sub>x+k<sub>2</sub>x<sup>2</sup>+k<sub>3</sub>x<sup>3</sup>+k<sub>4</sub>x<sup>4</sup>+...</p>
+        </div>
+        <div class="tabcontent" id="principle">
+            <h3>
+                Principle behind the approximation of non-polynomial 
+                functions using Taylor Series 
+            </h3>
+            <p>
+                Mathematically approximating a function <i>f(x)</i> with another 
+                polynomial <i>P(x) </i>implies that the value of <i>f(x)</i> and <i>P(x)</i>
+                and their successive differentiation at an arbitrary point x<sub>0</sub> overlaps!
+            </p>
+            <p>
+                Here x<sub>0</sub> is the point where the taylor series of the function is to be centered at. For simplicity,
+                consider x<sub>0</sub> = 0.
+            </p>
+            <button class="accordion" onclick = "calcSteps(0)">Step 1</button>
+            <div class="panel">
+            <p id = "step1" align = center>
+                f(x)|<sub>x=0</sub> = P(x)|<sub>x=0</sub>
+                <p id = "evalStep1" align = center></p>
+            </p>
+            </div>
+
+            <button class="accordion" onclick = "calcSteps(1)">Step 2</button>
+            <div class="panel">
+            <p id="step2" align = center>
+                f<sup><i>1</i></sup>(x)|<sub>x=0</sub> = P<sup><i>1</i></sup>(x)|<sub>x=0</sub>
+                <p id = "evalStep2" align = center></p>
+            </p>
+            </div>
+
+            <button class="accordion" onclick = "calcSteps(2)">Step 3</button>
+            <div class="panel">
+            <p id = "step3" align = center>
+                f<sup><i>2</i></sup>(x)|<sub>x=0</sub> = P<sup><i>2</i></sup>(x)|<sub>x=0</sub>
+                <p id = "evalStep3" align = center></p>
+            </p>
+            </div>
+
+            <button class="accordion" onclick = "calcSteps(3)">Step 4</button>
+            <div class="panel">
+            <p id = "step4" align = center>
+                f<sup><i>3</i></sup>(x)|<sub>x=0</sub> = P<sup><i>3</i></sup>(x)|<sub>x=0</sub>
+                <p id = "evalStep4" align = center></p>
+            </p>
+            </div>
+
+            <button class="accordion" onclick = "calcSteps(4)">Step 5</button>
+            <div class="panel">
+            <p id = "step5" align = center>
+                f<sup><i>4</i></sup>(x)|<sub>x=0</sub> = P<sup><i>4</i></sup>(x)|<sub>x=0</sub>
+                <p id = "evalStep5" align = center></p>
+            </p>
+            </div>
+            <p>Sustituting the values for constants (k's) in the general expression of a polynomial function:</p>
+            <p><i>P(x)</i> = k<sub>0</sub>+k<sub>1</sub>x+k<sub>2</sub>x<sup>2</sup>+k<sub>3</sub>x<sup>3</sup>+k<sub>4</sub>x<sup>4</sup>+...</p>
+        </div>
+        <div class="tabcontent" id="summary">
+            <h3>
+                Summary:
+            </h3>
+            <p>
+                By knowing this, we can find the Taylor Series for any function <i>f(x)</i>
+                at any arbitrary point x<sub>0</sub>, where the taylor series of the function is
+            </p>
+            <p>
+                <div class="slidecontainer">
+                    <p>Centered at: </p> 
+                    <input type="range" min="-8" max="8" value="0" class="slider" id="myRange">
+                    <p>x<sub>0 </sub>: <span id="value"></span>
+                        <button onclick="taylorSeriesGenerationAtA()">CLICK!</button>
+                    </p>
+                </div>
+                <script>
+                    var slider = document.getElementById("myRange");
+                    var output = document.getElementById("value");
+                    output.innerHTML = slider.value;
+                    
+                    slider.oninput = function() {
+                      output.innerHTML = this.value;
+                    }
+                </script>
+            </p>
+            <p>
+                Here, the graphs of the approximating polynomial equations shift horizontally according to
+                the non-zero values of x<sub>0</sub>.
+            </p>
+            <p>
+                Then, the general polymomial equation for non-zero values of x<sub>0</sub> will be:
+                <p><i>P(x-x<sub>0</sub> )</i> = k<sub>0</sub>+k<sub>1</sub>(x-x<sub>0</sub>)+k<sub>2</sub>(x-x<sub>0</sub>)<sup>2</sup>+k<sub>3</sub>(x-x<sub>0</sub>)<sup>3</sup>+k<sub>4</sub>(x-x<sub>0</sub>)<sup>4</sup>+...</p>
+            </p>
+        </div>
+        
+        <div id="express" class="expressTaylorSeries">
+            <h4>Taylor Series Expression:</h4>
+            <p>
+                y = <span id = "expansionSeries"></span>
+            </p>
+            <p>
+                Total number of terms:<span id = "noTerms"></span> Add <button id="addTerms" onclick = "addTerms()">+</button> Remove <button id="removeTerms" onclick="removeTerms()">-</button>
+            </p>
+        </div>
+    </div>
+    <div class="splitRight">
+        <div id="grf" class="graph">
+            <div>
+                <p align = "center">
+                    The graph for the taylor series of the input function will be shown here! 
+                    <div id="myPlot" style="width:100%;max-width:800px;max-height:625px;"></div>
+                </p>
+            </div>
+        </div>
+    </div>
+<script>
+var acc = document.getElementsByClassName("accordion");
+var i;
+
+for (i = 0; i < acc.length; i++) {
+  acc[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+    var panel = this.nextElementSibling;
+    if (panel.style.maxHeight) {
+      panel.style.maxHeight = null;
+    } else {
+      panel.style.maxHeight = panel.scrollHeight + "px";
+    } 
+  });
+}
+</script>    
+</body>
+</html>
